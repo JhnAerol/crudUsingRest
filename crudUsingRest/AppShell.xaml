@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="crudUsingRest.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:crudUsingRest.MVVM.Views"
+    Title="crudUsingRest">
+
+    
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainView}"
+        Route="MainView" />
+    
+     <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:UpdateView}"
+        Route="UpdateView" />
+    
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:CreateView}"
+        Route="CreateView" />
+    
+</Shell>

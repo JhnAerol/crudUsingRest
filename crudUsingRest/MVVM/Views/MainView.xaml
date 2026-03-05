@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="crudUsingRest.MVVM.Views.MainView"
+             Title="MainView">
+
+    <Grid RowDefinitions="Auto,*" RowSpacing="5" Margin="10">
+        <VerticalStackLayout HorizontalOptions="Start">
+            <Button Text="Create New" Background="Transparent" TextColor="Black" Clicked="Create_Clicked"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="5" VerticalOptions="Start" HorizontalOptions="Center">
+            <Border Stroke="Black" StrokeThickness="1" HeightRequest="45" WidthRequest="380" MaximumHeightRequest="60">
+                <Grid ColumnDefinitions="*,*"  MaximumHeightRequest="60">
+                    <VerticalStackLayout Margin="5,0">
+                        <Label Text="Title" FontAttributes="Bold" FontSize="18"/>
+                        <Label Text="Author" FontSize="13"/>
+                    </VerticalStackLayout>
+
+                    <Grid Grid.Column="1" ColumnDefinitions="*,Auto,*" ColumnSpacing="3">
+                        <Button Text="Update" HorizontalOptions="End" Background="Transparent" TextColor="Black" />
+                        <BoxView Grid.Column="1" HeightRequest="30" WidthRequest="2"/>
+                        <Button Grid.Column="2" HorizontalOptions="Start" Text="Delete" Background="Transparent" TextColor="Black" />
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Stroke="Black" StrokeThickness="1" HeightRequest="45" WidthRequest="380" MaximumHeightRequest="60">
+                <Grid ColumnDefinitions="*,*"  MaximumHeightRequest="60">
+                    <VerticalStackLayout Margin="5,0">
+                        <Label Text="Title" FontAttributes="Bold" FontSize="18"/>
+                        <Label Text="Author" FontSize="13"/>
+                    </VerticalStackLayout>
+
+                    <Grid Grid.Column="1" ColumnDefinitions="*,Auto,*" ColumnSpacing="3">
+                        <Button Text="Update" HorizontalOptions="End" Background="Transparent" TextColor="Black" />
+                        <BoxView Grid.Column="1" HeightRequest="30" WidthRequest="2"/>
+                        <Button Grid.Column="2" HorizontalOptions="Start" Text="Delete" Background="Transparent" TextColor="Black" />
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Stroke="Black" StrokeThickness="1" HeightRequest="45" WidthRequest="380" MaximumHeightRequest="60">
+                <Grid ColumnDefinitions="*,*"  MaximumHeightRequest="60">
+                    <VerticalStackLayout Margin="5,0">
+                        <Label Text="Title" FontAttributes="Bold" FontSize="18"/>
+                        <Label Text="Author" FontSize="13"/>
+                    </VerticalStackLayout>
+
+                    <Grid Grid.Column="1" ColumnDefinitions="*,Auto,*" ColumnSpacing="3">
+                        <Button Text="Update" HorizontalOptions="End" Background="Transparent" TextColor="Black" />
+                        <BoxView Grid.Column="1" HeightRequest="30" WidthRequest="2"/>
+                        <Button Grid.Column="2" HorizontalOptions="Start" Text="Delete" Background="Transparent" TextColor="Black" />
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Stroke="Black" StrokeThickness="1" HeightRequest="45" WidthRequest="380" MaximumHeightRequest="60">
+                <Grid ColumnDefinitions="*,*"  MaximumHeightRequest="60">
+                    <VerticalStackLayout Margin="5,0">
+                        <Label Text="Title" FontAttributes="Bold" FontSize="18"/>
+                        <Label Text="Author" FontSize="13"/>
+                    </VerticalStackLayout>
+
+                    <Grid Grid.Column="1" ColumnDefinitions="*,Auto,*" ColumnSpacing="3">
+                        <Button Text="Update" HorizontalOptions="End" Background="Transparent" TextColor="Black" />
+                        <BoxView Grid.Column="1" HeightRequest="30" WidthRequest="2"/>
+                        <Button Grid.Column="2" HorizontalOptions="Start" Text="Delete" Background="Transparent" TextColor="Black" />
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Stroke="Black" StrokeThickness="1" HeightRequest="45" WidthRequest="380" MaximumHeightRequest="60">
+                <Grid ColumnDefinitions="*,*"  MaximumHeightRequest="60">
+                    <VerticalStackLayout Margin="5,0">
+                        <Label Text="Title" FontAttributes="Bold" FontSize="18"/>
+                        <Label Text="Author" FontSize="13"/>
+                    </VerticalStackLayout>
+
+                    <Grid Grid.Column="1" ColumnDefinitions="*,Auto,*" ColumnSpacing="3">
+                        <Button Text="Update" HorizontalOptions="End" Background="Transparent" TextColor="Black" />
+                        <BoxView Grid.Column="1" HeightRequest="30" WidthRequest="2"/>
+                        <Button Grid.Column="2" HorizontalOptions="Start" Text="Delete" Background="Transparent" TextColor="Black" />
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Stroke="Black" StrokeThickness="1" HeightRequest="45" WidthRequest="380" MaximumHeightRequest="60">
+                <Grid ColumnDefinitions="*,*"  MaximumHeightRequest="60">
+                    <VerticalStackLayout Margin="5,0">
+                        <Label Text="Title" FontAttributes="Bold" FontSize="18"/>
+                        <Label Text="Author" FontSize="13"/>
+                    </VerticalStackLayout>
+
+                    <Grid Grid.Column="1" ColumnDefinitions="*,Auto,*" ColumnSpacing="3">
+                        <Button Text="Update" HorizontalOptions="End" Background="Transparent" TextColor="Black" Clicked="Update_Clicked"/>
+                        <BoxView Grid.Column="1" HeightRequest="30" WidthRequest="2"/>
+                        <Button Grid.Column="2" HorizontalOptions="Start" Text="Delete" Background="Transparent" TextColor="Black"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>

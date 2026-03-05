@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="crudUsingRest.MVVM.Views.UpdateView"
+             Title="UpdateView">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label Text="Update Book"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"/>
+
+        <Entry Placeholder="Title"/>
+
+        <Entry Placeholder="Author"/>
+
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+
+            <Button Text="Update"
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    WidthRequest="120"/>
+
+            <Button Text="Cancel"
+                    BackgroundColor="Transparent"
+                    TextColor="Black"
+                    WidthRequest="120"/>
+
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>  
+    
+</ContentPage>
