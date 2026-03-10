@@ -25,7 +25,10 @@
             <Button Text="Cancel"
                     BackgroundColor="Transparent"
                     TextColor="Black"
-                    WidthRequest="120"/>
+                    WidthRequest="120"
+                    BorderWidth="2"
+                    BorderColor="Black"
+                    Clicked="Cancel_Clicked"/>
 
         </HorizontalStackLayout>
 

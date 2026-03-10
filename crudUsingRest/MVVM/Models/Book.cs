@@ -14,6 +14,8 @@ namespace crudUsingRest.MVVM.Models
 
         public string Author { get; set; }
 
+        public DateTime DatePublish { get; set }
+
         public bool IsDeleted { get; set; }
     }
 }

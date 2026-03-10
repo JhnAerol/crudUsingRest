@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="crudUsingRest.Resources.Styles.MainViewStyles">
+
+    <Style x:Key="BookCardBorder" TargetType="Border">
+        <Setter Property="Stroke" Value="#E0E0E0"/>
+        <Setter Property="StrokeThickness" Value="1"/>
+        <Setter Property="StrokeShape">
+            <RoundRectangle CornerRadius="10"/>
+        </Setter>
+        <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="Padding" Value="12"/>
+        <Setter Property="Margin" Value="0,5"/>
+        <Setter Property="Shadow">
+            <Shadow Brush="#40000000" Offset="0,3" Radius="6"/>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BookTitleLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="TextColor" Value="#1F2937"/>
+    </Style>
+
+    <Style x:Key="BookAuthorLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="TextColor" Value="#6B7280"/>
+    </Style>
+
+    <Style x:Key="ActionButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+
+    <Style x:Key="CreateButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="BorderWidth" Value="2"/>
+        <Setter Property="BorderColor" Value="Black"/>
+        <Setter Property="Padding" Value="10,6"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+    
+</ResourceDictionary>

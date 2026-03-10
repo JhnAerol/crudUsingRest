@@ -5,6 +5,7 @@ public partial class MainView : ContentPage
 	public MainView()
 	{
 		InitializeComponent();
+        NavigationPage.SetHasNavigationBar(this, false);
 	}
 
     private async void Update_Clicked(object sender, EventArgs e)

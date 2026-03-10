@@ -6,20 +6,14 @@
     xmlns:local="clr-namespace:crudUsingRest.MVVM.Views"
     Title="crudUsingRest">
 
-    
     <ShellContent
-        Title="Home"
         ContentTemplate="{DataTemplate local:MainView}"
         Route="MainView" />
-    
-     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:UpdateView}"
-        Route="UpdateView" />
-    
     <ShellContent
-        Title="Home"
         ContentTemplate="{DataTemplate local:CreateView}"
         Route="CreateView" />
-    
+    <ShellContent
+        ContentTemplate="{DataTemplate local:UpdateView}"
+        Route="UpdateView" />
+
 </Shell>

@@ -2,96 +2,88 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="crudUsingRest.MVVM.Views.MainView"
-             Title="MainView">
+             Title="MainView"
+             Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto,*" RowSpacing="5" Margin="10">
+    <Grid RowDefinitions="Auto,*" RowSpacing="5" Margin="10,15">
         <VerticalStackLayout HorizontalOptions="Start">
-            <Button Text="Create New" Background="Transparent" TextColor="Black" Clicked="Create_Clicked"/>
+            <Button Text="Create New"
+                    Style="{StaticResource CreateButtonStyle}"
+                    Clicked="Create_Clicked"/>
         </VerticalStackLayout>
 
-        <VerticalStackLayout Grid.Row="1" Spacing="5" VerticalOptions="Start" HorizontalOptions="Center">
-            <Border Stroke="Black" StrokeThickness="1" HeightRequest="45" WidthRequest="380" MaximumHeightRequest="60">
-                <Grid ColumnDefinitions="*,*"  MaximumHeightRequest="60">
-                    <VerticalStackLayout Margin="5,0">
-                        <Label Text="Title" FontAttributes="Bold" FontSize="18"/>
-                        <Label Text="Author" FontSize="13"/>
+        <VerticalStackLayout Grid.Row="1" Spacing="5" VerticalOptions="Start" HorizontalOptions="Center" MinimumWidthRequest="340">
+            <Border Style="{StaticResource BookCardBorder}">
+                <Grid ColumnDefinitions="*,Auto">
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Titleasdasdasdasdasdasdasdasdasdasd1"
+                               Style="{StaticResource BookTitleLabel}"/>
+
+                        <Label Text="Author"
+                               Style="{StaticResource BookAuthorLabel}"/>
+
+                        
+                        <Label Text="Date Published"
+                               FontSize="13"
+                               Margin="0,15,0,0"/>
                     </VerticalStackLayout>
 
-                    <Grid Grid.Column="1" ColumnDefinitions="*,Auto,*" ColumnSpacing="3">
-                        <Button Text="Update" HorizontalOptions="End" Background="Transparent" TextColor="Black" />
-                        <BoxView Grid.Column="1" HeightRequest="30" WidthRequest="2"/>
-                        <Button Grid.Column="2" HorizontalOptions="Start" Text="Delete" Background="Transparent" TextColor="Black" />
+                    <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto,Auto" ColumnSpacing="5">
+
+                        <Button Text="Update"
+                                Style="{StaticResource ActionButtonStyle}"
+                                TextColor="Blue"
+                                Clicked="Update_Clicked"/>
+
+                        <BoxView Grid.Column="1"
+                                 WidthRequest="1"
+                                 HeightRequest="25"
+                                 Color="#D1D5DB"/>
+
+                        <Button Grid.Column="2"
+                                Text="Delete"
+                                TextColor="Red"
+                                Style="{StaticResource ActionButtonStyle}"/>
+
                     </Grid>
+
                 </Grid>
             </Border>
-            <Border Stroke="Black" StrokeThickness="1" HeightRequest="45" WidthRequest="380" MaximumHeightRequest="60">
-                <Grid ColumnDefinitions="*,*"  MaximumHeightRequest="60">
-                    <VerticalStackLayout Margin="5,0">
-                        <Label Text="Title" FontAttributes="Bold" FontSize="18"/>
-                        <Label Text="Author" FontSize="13"/>
+            <Border Style="{StaticResource BookCardBorder}">
+                <Grid ColumnDefinitions="*,Auto">
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Title1"
+                               Style="{StaticResource BookTitleLabel}"/>
+
+                        <Label Text="Author"
+                               Style="{StaticResource BookAuthorLabel}"/>
+
+                        <Label Text="Date Published"
+                               FontSize="13"
+                               Margin="0,15,0,0"/>
                     </VerticalStackLayout>
 
-                    <Grid Grid.Column="1" ColumnDefinitions="*,Auto,*" ColumnSpacing="3">
-                        <Button Text="Update" HorizontalOptions="End" Background="Transparent" TextColor="Black" />
-                        <BoxView Grid.Column="1" HeightRequest="30" WidthRequest="2"/>
-                        <Button Grid.Column="2" HorizontalOptions="Start" Text="Delete" Background="Transparent" TextColor="Black" />
-                    </Grid>
-                </Grid>
-            </Border>
-            <Border Stroke="Black" StrokeThickness="1" HeightRequest="45" WidthRequest="380" MaximumHeightRequest="60">
-                <Grid ColumnDefinitions="*,*"  MaximumHeightRequest="60">
-                    <VerticalStackLayout Margin="5,0">
-                        <Label Text="Title" FontAttributes="Bold" FontSize="18"/>
-                        <Label Text="Author" FontSize="13"/>
-                    </VerticalStackLayout>
+                    <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto,Auto" ColumnSpacing="5">
 
-                    <Grid Grid.Column="1" ColumnDefinitions="*,Auto,*" ColumnSpacing="3">
-                        <Button Text="Update" HorizontalOptions="End" Background="Transparent" TextColor="Black" />
-                        <BoxView Grid.Column="1" HeightRequest="30" WidthRequest="2"/>
-                        <Button Grid.Column="2" HorizontalOptions="Start" Text="Delete" Background="Transparent" TextColor="Black" />
-                    </Grid>
-                </Grid>
-            </Border>
-            <Border Stroke="Black" StrokeThickness="1" HeightRequest="45" WidthRequest="380" MaximumHeightRequest="60">
-                <Grid ColumnDefinitions="*,*"  MaximumHeightRequest="60">
-                    <VerticalStackLayout Margin="5,0">
-                        <Label Text="Title" FontAttributes="Bold" FontSize="18"/>
-                        <Label Text="Author" FontSize="13"/>
-                    </VerticalStackLayout>
+                        <Button Text="Update"
+                                Style="{StaticResource ActionButtonStyle}"
+                                TextColor="Blue"
+                                Clicked="Update_Clicked"/>
 
-                    <Grid Grid.Column="1" ColumnDefinitions="*,Auto,*" ColumnSpacing="3">
-                        <Button Text="Update" HorizontalOptions="End" Background="Transparent" TextColor="Black" />
-                        <BoxView Grid.Column="1" HeightRequest="30" WidthRequest="2"/>
-                        <Button Grid.Column="2" HorizontalOptions="Start" Text="Delete" Background="Transparent" TextColor="Black" />
-                    </Grid>
-                </Grid>
-            </Border>
-            <Border Stroke="Black" StrokeThickness="1" HeightRequest="45" WidthRequest="380" MaximumHeightRequest="60">
-                <Grid ColumnDefinitions="*,*"  MaximumHeightRequest="60">
-                    <VerticalStackLayout Margin="5,0">
-                        <Label Text="Title" FontAttributes="Bold" FontSize="18"/>
-                        <Label Text="Author" FontSize="13"/>
-                    </VerticalStackLayout>
+                        <BoxView Grid.Column="1"
+                                 WidthRequest="1"
+                                 HeightRequest="25"
+                                 Color="#D1D5DB"/>
 
-                    <Grid Grid.Column="1" ColumnDefinitions="*,Auto,*" ColumnSpacing="3">
-                        <Button Text="Update" HorizontalOptions="End" Background="Transparent" TextColor="Black" />
-                        <BoxView Grid.Column="1" HeightRequest="30" WidthRequest="2"/>
-                        <Button Grid.Column="2" HorizontalOptions="Start" Text="Delete" Background="Transparent" TextColor="Black" />
-                    </Grid>
-                </Grid>
-            </Border>
-            <Border Stroke="Black" StrokeThickness="1" HeightRequest="45" WidthRequest="380" MaximumHeightRequest="60">
-                <Grid ColumnDefinitions="*,*"  MaximumHeightRequest="60">
-                    <VerticalStackLayout Margin="5,0">
-                        <Label Text="Title" FontAttributes="Bold" FontSize="18"/>
-                        <Label Text="Author" FontSize="13"/>
-                    </VerticalStackLayout>
+                        <Button Grid.Column="2"
+                                Text="Delete"
+                                TextColor="Red"
+                                Style="{StaticResource ActionButtonStyle}"/>
 
-                    <Grid Grid.Column="1" ColumnDefinitions="*,Auto,*" ColumnSpacing="3">
-                        <Button Text="Update" HorizontalOptions="End" Background="Transparent" TextColor="Black" Clicked="Update_Clicked"/>
-                        <BoxView Grid.Column="1" HeightRequest="30" WidthRequest="2"/>
-                        <Button Grid.Column="2" HorizontalOptions="Start" Text="Delete" Background="Transparent" TextColor="Black"/>
                     </Grid>
+
                 </Grid>
             </Border>
         </VerticalStackLayout>
