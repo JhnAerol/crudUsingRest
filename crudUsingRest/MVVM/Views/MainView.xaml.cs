@@ -1,3 +1,5 @@
+using crudUsingRest.MVVM.ViewModels;
+
 namespace crudUsingRest.MVVM.Views;
 
 public partial class MainView : ContentPage
@@ -5,6 +7,7 @@ public partial class MainView : ContentPage
 	public MainView()
 	{
 		InitializeComponent();
+        BindingContext = new CreateViewModel();
         NavigationPage.SetHasNavigationBar(this, false);
 	}
 

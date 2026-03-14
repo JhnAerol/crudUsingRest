@@ -1,18 +1,78 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="crudUsingRest.MVVM.Views.MainView"
-             Title="MainView"
-             Shell.NavBarIsVisible="False">
+<ContentPage
+    x:Class="crudUsingRest.MVVM.Views.MainView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:crudUsingRest.MVVM.ViewModels"
+    x:DataType="vm:CreateViewModel"
+    Title="MainView"
+    Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto,*" RowSpacing="5" Margin="10,15">
+    <Grid
+        Margin="10,15"
+        RowDefinitions="Auto,*"
+        RowSpacing="5">
         <VerticalStackLayout HorizontalOptions="Start">
-            <Button Text="Create New"
-                    Style="{StaticResource CreateButtonStyle}"
-                    Clicked="Create_Clicked"/>
+            <Button
+                Clicked="Create_Clicked"
+                Style="{StaticResource CreateButtonStyle}"
+                Text="Create New" />
         </VerticalStackLayout>
 
-        <VerticalStackLayout Grid.Row="1" Spacing="5" VerticalOptions="Start" HorizontalOptions="Center" MinimumWidthRequest="340">
+        <CollectionView
+            Grid.Row="1"
+            ItemsSource="{Binding _books}"
+            SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource BookCardBorder}">
+                        <Grid ColumnDefinitions="*,Auto">
+
+                            <VerticalStackLayout Spacing="4">
+                                <Label Style="{StaticResource BookTitleLabel}" Text="{Binding title}" />
+
+                                <Label Style="{StaticResource BookAuthorLabel}" Text="{Binding author}" />
+
+
+                                <Label
+                                    Margin="0,15,0,0"
+                                    FontSize="13"
+                                    Text="{Binding datePublished, StringFormat='{MMMM yyyy}'}" />
+                            </VerticalStackLayout>
+
+                            <Grid
+                                Grid.Column="1"
+                                ColumnDefinitions="Auto,Auto,Auto"
+                                ColumnSpacing="5">
+
+                                <Button
+                                    Clicked="Update_Clicked"
+                                    Style="{StaticResource ActionButtonStyle}"
+                                    Text="Update"
+                                    TextColor="Blue" />
+
+                                <BoxView
+                                    Grid.Column="1"
+                                    HeightRequest="25"
+                                    WidthRequest="1"
+                                    Color="#D1D5DB" />
+
+                                <Button
+                                    Grid.Column="2"
+                                    Style="{StaticResource ActionButtonStyle}"
+                                    Text="Delete"
+                                    TextColor="Red" />
+
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <!--<VerticalStackLayout Grid.Row="1" Spacing="5" VerticalOptions="Start" HorizontalOptions="Center" MinimumWidthRequest="340">
             <Border Style="{StaticResource BookCardBorder}">
                 <Grid ColumnDefinitions="*,Auto">
 
@@ -23,7 +83,7 @@
                         <Label Text="Author"
                                Style="{StaticResource BookAuthorLabel}"/>
 
-                        
+
                         <Label Text="Date Published"
                                FontSize="13"
                                Margin="0,15,0,0"/>
@@ -86,7 +146,7 @@
 
                 </Grid>
             </Border>
-        </VerticalStackLayout>
+        </VerticalStackLayout>-->
     </Grid>
 
 </ContentPage>

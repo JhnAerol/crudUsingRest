@@ -8,14 +8,11 @@ namespace crudUsingRest.MVVM.Models
 {
     public class Book
     {
-        public int Id { get; set; }
+        public string title { get; set; }
+        public string author { get; set; }
+        public DateTime datePublished { get; set; }
+        public bool isDeleted { get; set; }
+        public string id { get; set; }
 
-        public string Title { get; set; }
-
-        public string Author { get; set; }
-
-        public DateTime DatePublish { get; set }
-
-        public bool IsDeleted { get; set; }
     }
 }
