@@ -1,37 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="crudUsingRest.MVVM.Views.UpdateView"
-             Title="UpdateView">
+<ContentPage
+    x:Class="crudUsingRest.MVVM.Views.UpdateView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:crudUsingRest.MVVM.ViewModels"
+    Title="UpdateView"
+    x:DataType="vm:CRUDViewModel">
 
     <VerticalStackLayout Padding="20" Spacing="15">
 
-        <Label Text="Update Book"
-               FontSize="24"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"/>
+        <Label
+            FontAttributes="Bold"
+            FontSize="24"
+            HorizontalOptions="Center"
+            Text="Update Book" />
 
-        <Entry Placeholder="Title"/>
+        <Entry Text="{Binding Title}" />
+        <Entry Text="{Binding Author}" />
 
-        <Entry Placeholder="Author"/>
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
 
-        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+            <Button
+                BackgroundColor="Black"
+                Command="{Binding UpdateBookCommand}"
+                Clicked="Update_Clicked"
+                Text="Update"
+                TextColor="White" />
 
-            <Button Text="Update"
-                    BackgroundColor="Black"
-                    TextColor="White"
-                    WidthRequest="120"/>
-
-            <Button Text="Cancel"
-                    BackgroundColor="Transparent"
-                    TextColor="Black"
-                    WidthRequest="120"
-                    BorderWidth="2"
-                    BorderColor="Black"
-                    Clicked="Cancel_Clicked"/>
+            <Button
+                BackgroundColor="Transparent"
+                BorderColor="Black"
+                BorderWidth="2"
+                Clicked="Cancel_Clicked"
+                Text="Cancel"
+                TextColor="Black"
+                WidthRequest="120" />
 
         </HorizontalStackLayout>
 
-    </VerticalStackLayout>  
-    
+    </VerticalStackLayout>
+
 </ContentPage>

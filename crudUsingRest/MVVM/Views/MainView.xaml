@@ -3,9 +3,10 @@
     x:Class="crudUsingRest.MVVM.Views.MainView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:crudUsingRest.MVVM.Models"
     xmlns:vm="clr-namespace:crudUsingRest.MVVM.ViewModels"
-    x:DataType="vm:CreateViewModel"
     Title="MainView"
+    x:DataType="vm:CRUDViewModel"
     Shell.NavBarIsVisible="False">
 
     <Grid
@@ -24,7 +25,7 @@
             ItemsSource="{Binding _books}"
             SelectionMode="None">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Book">
                     <Border Style="{StaticResource BookCardBorder}">
                         <Grid ColumnDefinitions="*,Auto">
 
@@ -37,7 +38,7 @@
                                 <Label
                                     Margin="0,15,0,0"
                                     FontSize="13"
-                                    Text="{Binding datePublished, StringFormat='{MMMM yyyy}'}" />
+                                    Text="{Binding datePublished, StringFormat='{0:MMMM yyyy}'}" />
                             </VerticalStackLayout>
 
                             <Grid
@@ -49,6 +50,7 @@
                                     Clicked="Update_Clicked"
                                     Style="{StaticResource ActionButtonStyle}"
                                     Text="Update"
+                                    CommandParameter="{Binding .}"
                                     TextColor="Blue" />
 
                                 <BoxView
@@ -59,6 +61,8 @@
 
                                 <Button
                                     Grid.Column="2"
+                                    Command="{Binding DeleteBookCommand}"
+                                    CommandParameter="{Binding .}"
                                     Style="{StaticResource ActionButtonStyle}"
                                     Text="Delete"
                                     TextColor="Red" />
@@ -71,82 +75,6 @@
             </CollectionView.ItemTemplate>
 
         </CollectionView>
-
-        <!--<VerticalStackLayout Grid.Row="1" Spacing="5" VerticalOptions="Start" HorizontalOptions="Center" MinimumWidthRequest="340">
-            <Border Style="{StaticResource BookCardBorder}">
-                <Grid ColumnDefinitions="*,Auto">
-
-                    <VerticalStackLayout Spacing="4">
-                        <Label Text="Titleasdasdasdasdasdasdasdasdasdasd1"
-                               Style="{StaticResource BookTitleLabel}"/>
-
-                        <Label Text="Author"
-                               Style="{StaticResource BookAuthorLabel}"/>
-
-
-                        <Label Text="Date Published"
-                               FontSize="13"
-                               Margin="0,15,0,0"/>
-                    </VerticalStackLayout>
-
-                    <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto,Auto" ColumnSpacing="5">
-
-                        <Button Text="Update"
-                                Style="{StaticResource ActionButtonStyle}"
-                                TextColor="Blue"
-                                Clicked="Update_Clicked"/>
-
-                        <BoxView Grid.Column="1"
-                                 WidthRequest="1"
-                                 HeightRequest="25"
-                                 Color="#D1D5DB"/>
-
-                        <Button Grid.Column="2"
-                                Text="Delete"
-                                TextColor="Red"
-                                Style="{StaticResource ActionButtonStyle}"/>
-
-                    </Grid>
-
-                </Grid>
-            </Border>
-            <Border Style="{StaticResource BookCardBorder}">
-                <Grid ColumnDefinitions="*,Auto">
-
-                    <VerticalStackLayout Spacing="4">
-                        <Label Text="Title1"
-                               Style="{StaticResource BookTitleLabel}"/>
-
-                        <Label Text="Author"
-                               Style="{StaticResource BookAuthorLabel}"/>
-
-                        <Label Text="Date Published"
-                               FontSize="13"
-                               Margin="0,15,0,0"/>
-                    </VerticalStackLayout>
-
-                    <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto,Auto" ColumnSpacing="5">
-
-                        <Button Text="Update"
-                                Style="{StaticResource ActionButtonStyle}"
-                                TextColor="Blue"
-                                Clicked="Update_Clicked"/>
-
-                        <BoxView Grid.Column="1"
-                                 WidthRequest="1"
-                                 HeightRequest="25"
-                                 Color="#D1D5DB"/>
-
-                        <Button Grid.Column="2"
-                                Text="Delete"
-                                TextColor="Red"
-                                Style="{StaticResource ActionButtonStyle}"/>
-
-                    </Grid>
-
-                </Grid>
-            </Border>
-        </VerticalStackLayout>-->
     </Grid>
 
 </ContentPage>

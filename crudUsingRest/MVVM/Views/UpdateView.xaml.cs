@@ -1,15 +1,36 @@
+using crudUsingRest.MVVM.Models;
+using crudUsingRest.MVVM.ViewModels;
+
 namespace crudUsingRest.MVVM.Views;
 
 public partial class UpdateView : ContentPage
 {
-	public UpdateView()
+    CRUDViewModel _viewModel;
+
+    public UpdateView(CRUDViewModel viewModel)
 	{
 		InitializeComponent();
+        _viewModel = viewModel;
+        BindingContext = _viewModel;
         NavigationPage.SetHasNavigationBar(this, false);
+
+        if (_viewModel.SelectedBook != null)
+        {
+            _viewModel.Title = _viewModel.SelectedBook.title;
+            _viewModel.Author = _viewModel.SelectedBook.author;
+            _viewModel.DatePublished = _viewModel.SelectedBook.datePublished;
+        }
+    }
+
+    private async void Update_Clicked(object sender, EventArgs e)
+    {
+        
+        await Navigation.PopAsync();
+        
     }
 
     private async void Cancel_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new MainView());
+        await Navigation.PopAsync();
     }
 }
