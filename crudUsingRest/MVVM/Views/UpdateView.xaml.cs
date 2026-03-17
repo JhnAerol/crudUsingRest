@@ -18,19 +18,20 @@ public partial class UpdateView : ContentPage
         {
             _viewModel.Title = _viewModel.SelectedBook.title;
             _viewModel.Author = _viewModel.SelectedBook.author;
-            _viewModel.DatePublished = _viewModel.SelectedBook.datePublished;
         }
     }
 
     private async void Update_Clicked(object sender, EventArgs e)
     {
-        
+        _viewModel.SelectedBook = null;
         await Navigation.PopAsync();
         
     }
 
     private async void Cancel_Clicked(object sender, EventArgs e)
     {
+
+        _viewModel.SelectedBook = null;
         await Navigation.PopAsync();
     }
 }

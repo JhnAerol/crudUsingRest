@@ -1,4 +1,5 @@
-﻿using crudUsingRest.MVVM.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using crudUsingRest.MVVM.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +11,7 @@ using System.Windows.Input;
 
 namespace crudUsingRest.MVVM.ViewModels;
 
-public class CRUDViewModel
+public partial class CRUDViewModel : ObservableObject
 {
     HttpClient _client;
     JsonSerializerOptions _option;
@@ -18,11 +19,17 @@ public class CRUDViewModel
     public ObservableCollection<Book> _books { get; set; } = new();
     public ObservableCollection<Book> _softDeletedBooks { get; set; } = new();
 
-    public string Title { get; set; }
-    public string Author { get; set; }
-    public DateTime DatePublished { get; set; } = DateTime.Now;
+    [ObservableProperty]
+    private string title;
+    [ObservableProperty]
+    private string author;
+    [ObservableProperty]
+    private DateTime datePublished = DateTime.Now;
+    [ObservableProperty]
+    private string isDeleted;
 
-    public Book SelectedBook { get; set; }
+    [ObservableProperty]
+    private Book selectedBook;
 
     public CRUDViewModel()
     {
@@ -133,5 +140,28 @@ public class CRUDViewModel
         {
             _books.Remove(book);
         }
+    });
+
+    public ICommand SoftDeleteCommand => new Command(async () =>
+    {
+        if (SelectedBook == null)
+            return;
+
+        var url = $"{baseUrl}/Book/{SelectedBook.id}";
+
+        SelectedBook.isDeleted = true;
+
+        string json = JsonSerializer.Serialize(SelectedBook, _option);
+
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        var response = await _client.PutAsync(url, content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            LoadBooks();
+            LoadSoftDeletedBooks();
+        }
+
     });
 }

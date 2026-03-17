@@ -15,9 +15,9 @@
             HorizontalOptions="Center"
             Text="Create New Book" />
 
-        <Entry Placeholder="Enter Title" Text="{Binding Title}" />
+        <Entry x:Name="txtTitle" Placeholder="Enter Title" Text="{Binding Title}" />
 
-        <Entry Placeholder="Enter Author" Text="{Binding Author}" />
+        <Entry x:Name="txtAuthor" Placeholder="Enter Author" Text="{Binding Author}" />
 
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
 

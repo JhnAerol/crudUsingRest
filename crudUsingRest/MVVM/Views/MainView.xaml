@@ -112,7 +112,7 @@
 
                 <VerticalStackLayout>
 
-                    <Label
+                    <!--<Label
                         FontSize="20"
                         HorizontalOptions="Center"
                         Text="Soft Delete">
@@ -121,14 +121,22 @@
                             <TapGestureRecognizer Tapped="SoftDelete_Tapped" />
                         </Label.GestureRecognizers>
 
-                    </Label>
+                    </Label>-->
+                    <Button FontSize="18"
+                            Text="Soft Delete"
+                            Command="{Binding SoftDeleteCommand}"
+                            Clicked="SoftDelete_Tapped"
+                            TextColor="Black"
+                            Background="Transparent"
+                            BorderWidth="2"
+                            BorderColor="Black"/>
 
                     <BoxView
                         Margin="50,5"
                         BackgroundColor="#E0E0E0"
                         HeightRequest="2" />
 
-                    <Label
+                    <!--<Label
                         FontSize="20"
                         HorizontalOptions="Center"
                         Text="Hard Delete">
@@ -137,10 +145,19 @@
                             <TapGestureRecognizer Tapped="HardDelete_Tapped" />
                         </Label.GestureRecognizers>
 
-                    </Label>
+                    </Label>-->
+                    <Button FontSize="18"
+                            Text="Hard Delete"
+                            TextColor="Black"
+                            Command="{Binding DeleteBookCommand}"
+                            Clicked="HardDelete_Tapped"
+                            Background="Transparent"
+                            BorderWidth="2"
+                            BorderColor="Black"/>
 
                     <Button
                         Margin="0,10,0,0"
+                        Text="Cancel"
                         Clicked="CancelButton_Clicked"
                         Style="{StaticResource ButtonCancel}" />
                 </VerticalStackLayout>

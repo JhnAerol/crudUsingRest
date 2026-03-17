@@ -15,8 +15,8 @@
             HorizontalOptions="Center"
             Text="Update Book" />
 
-        <Entry Text="{Binding Title}" />
-        <Entry Text="{Binding Author}" />
+        <Entry x:Name="txtTitle" Text="{Binding Title}" />
+        <Entry x:Name="txtAuthor" Text="{Binding Author}" />
 
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
 
@@ -24,7 +24,7 @@
                 BackgroundColor="Black"
                 Command="{Binding UpdateBookCommand}"
                 Clicked="Update_Clicked"
-                Text="Update"
+                Text="Update" 
                 TextColor="White" />
 
             <Button

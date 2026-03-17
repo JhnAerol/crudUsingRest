@@ -1,5 +1,6 @@
 using crudUsingRest.MVVM.Models;
 using crudUsingRest.MVVM.ViewModels;
+using Microsoft.Maui.Layouts;
 
 namespace crudUsingRest.MVVM.Views;
 
@@ -19,7 +20,7 @@ public partial class MainView : ContentPage
     private async void Update_Clicked(object sender, EventArgs e)
     {
         var button = sender as Button;
-        var selectedBook = button?.CommandParameter as Book;
+        var selectedBook = button?.BindingContext as Book;
 
         if (selectedBook != null)
         {
@@ -31,6 +32,12 @@ public partial class MainView : ContentPage
 
     private async void Create_Clicked(object sender, EventArgs e)
     {
+        _viewModel.Title = null;
+        _viewModel.Author = null;
+        _viewModel.SelectedBook = null;
+        if (_viewModel.SelectedBook != null)
+            return;
+
         await Navigation.PushAsync(new CreateView(_viewModel));
     }
 
@@ -41,35 +48,25 @@ public partial class MainView : ContentPage
 
     private void OpenOption_Clicked(object sender, EventArgs e)
     {
-        var btn = sender as Button;
-        
-        if(btn != null)
+        var button = sender as Button;
+        var selectedBook = button?.BindingContext as Book;
+
+        if (selectedBook != null)
         {
-            _selectedBook = btn.BindingContext as Book;
+            _viewModel.SelectedBook = selectedBook;
             optionOverlay.IsVisible = true;
         }
-        if (_selectedBook == null)
-            return;
 
     }
 
     private void SoftDelete_Tapped(object sender, EventArgs e)
     {
-        var lbl = sender as Label;
-
-        if (lbl != null)
-        {
-            _selectedBook.isDeleted = true;
-
-        }
-
-        _viewModel.LoadBooks();
-        _viewModel.LoadSoftDeletedBooks();
+        optionOverlay.IsVisible = false;
     }
 
     private void HardDelete_Tapped(object sender, EventArgs e)
     {
-        _viewModel.DeleteBookCommand.Execute(_selectedBook);
+        optionOverlay.IsEnabled = false;
     }
 
     private void CancelButton_Clicked(object sender, EventArgs e)
