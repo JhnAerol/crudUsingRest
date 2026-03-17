@@ -1,32 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="crudUsingRest.MVVM.Views.MainView"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:models="clr-namespace:crudUsingRest.MVVM.Models"
-    xmlns:vm="clr-namespace:crudUsingRest.MVVM.ViewModels"
-    Title="MainView"
-    x:DataType="vm:CRUDViewModel"
-    Shell.NavBarIsVisible="False">
-
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="crudUsingRest.MVVM.Views.ArchiveView"
+             xmlns:models="clr-namespace:crudUsingRest.MVVM.Models"
+             xmlns:vm="clr-namespace:crudUsingRest.MVVM.ViewModels"
+             x:DataType="vm:CRUDViewModel"
+             Title="ArchiveView">
     <Grid
         Margin="10,15"
         RowDefinitions="Auto,*"
         RowSpacing="5">
-        <HorizontalStackLayout HorizontalOptions="Start" Spacing="5">
+        <VerticalStackLayout HorizontalOptions="Start">
             <Button
-                Clicked="Create_Clicked"
+                Clicked="Back_Clicked"
                 Style="{StaticResource CreateButtonStyle}"
-                Text="Create New" />
-            <Button
-                Clicked="GotoArchive_Clicked"
-                Style="{StaticResource CreateButtonStyle}"
-                Text="Go to Archive" />
-        </HorizontalStackLayout>
+                Text="Back To Main View" />
+        </VerticalStackLayout>
 
         <CollectionView
             Grid.Row="1"
-            ItemsSource="{Binding _books}"
+            ItemsSource="{Binding _softDeletedBooks}"
             SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Book">
@@ -79,7 +72,8 @@
                                 <BoxView WidthRequest="70" HeightRequest="2"/>
 
                                 <Button
-                                    Clicked="OpenOption_Clicked"
+                                    Command="{Binding DeleteBookCommand}"
+                                    CommandParameter="{Binding .}"
                                     Style="{StaticResource ActionButtonStyle}"
                                     Text="Delete"
                                     TextColor="Red" />
@@ -92,63 +86,5 @@
             </CollectionView.ItemTemplate>
 
         </CollectionView>
-        
-        
-            <Grid
-            x:Name="optionOverlay"
-            Grid.Row="1"
-            Grid.RowSpan="2"
-            BackgroundColor="#80000000"
-            IsVisible="False">
-
-            <Border x:Name="optionContent" Style="{StaticResource BorderOverlay}">
-                <Border.Shadow>
-                    <Shadow
-                        Brush="Black"
-                        Opacity="0.4"
-                        Radius="15"
-                        Offset="0,8" />
-                </Border.Shadow>
-
-                <VerticalStackLayout>
-
-                    <Label
-                        FontSize="20"
-                        HorizontalOptions="Center"
-                        Text="Soft Delete">
-
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="SoftDelete_Tapped" />
-                        </Label.GestureRecognizers>
-
-                    </Label>
-
-                    <BoxView
-                        Margin="50,5"
-                        BackgroundColor="#E0E0E0"
-                        HeightRequest="2" />
-
-                    <Label
-                        FontSize="20"
-                        HorizontalOptions="Center"
-                        Text="Hard Delete">
-
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="HardDelete_Tapped" />
-                        </Label.GestureRecognizers>
-
-                    </Label>
-
-                    <Button
-                        Margin="0,10,0,0"
-                        Clicked="CancelButton_Clicked"
-                        Style="{StaticResource ButtonCancel}" />
-                </VerticalStackLayout>
-
-            </Border>
-
-        </Grid>
-        
     </Grid>
-
 </ContentPage>

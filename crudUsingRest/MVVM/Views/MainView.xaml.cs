@@ -33,4 +33,47 @@ public partial class MainView : ContentPage
     {
         await Navigation.PushAsync(new CreateView(_viewModel));
     }
+
+    private async void GotoArchive_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ArchiveView(_viewModel));
+    }
+
+    private void OpenOption_Clicked(object sender, EventArgs e)
+    {
+        var btn = sender as Button;
+        
+        if(btn != null)
+        {
+            _selectedBook = btn.BindingContext as Book;
+            optionOverlay.IsVisible = true;
+        }
+        if (_selectedBook == null)
+            return;
+
+    }
+
+    private void SoftDelete_Tapped(object sender, EventArgs e)
+    {
+        var lbl = sender as Label;
+
+        if (lbl != null)
+        {
+            _selectedBook.isDeleted = true;
+
+        }
+
+        _viewModel.LoadBooks();
+        _viewModel.LoadSoftDeletedBooks();
+    }
+
+    private void HardDelete_Tapped(object sender, EventArgs e)
+    {
+        _viewModel.DeleteBookCommand.Execute(_selectedBook);
+    }
+
+    private void CancelButton_Clicked(object sender, EventArgs e)
+    {
+        optionOverlay.IsVisible = false;
+    }
 }

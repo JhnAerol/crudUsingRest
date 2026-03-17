@@ -5,7 +5,6 @@ namespace crudUsingRest
 {
     public partial class App : Application
     {
-        CRUDViewModel viewModel = new CRUDViewModel();
         public App()
         {
             InitializeComponent();
@@ -13,7 +12,7 @@ namespace crudUsingRest
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new NavigationPage(new MainView(viewModel)));
+            return new Window(new NavigationPage(new MainView(new CRUDViewModel())));
         }
     }
 }

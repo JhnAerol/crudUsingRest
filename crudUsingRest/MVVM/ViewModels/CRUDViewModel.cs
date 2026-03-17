@@ -16,6 +16,8 @@ public class CRUDViewModel
     JsonSerializerOptions _option;
     string baseUrl = "https://69b58dbebe587338e7162461.mockapi.io";
     public ObservableCollection<Book> _books { get; set; } = new();
+    public ObservableCollection<Book> _softDeletedBooks { get; set; } = new();
+
     public string Title { get; set; }
     public string Author { get; set; }
     public DateTime DatePublished { get; set; } = DateTime.Now;
@@ -30,9 +32,29 @@ public class CRUDViewModel
             WriteIndented = true,
         };
         LoadBooks();
+        LoadSoftDeletedBooks();
     }
 
-    private async void LoadBooks()
+    public async void LoadSoftDeletedBooks()
+    {
+        var url = $"{baseUrl}/Book";
+        var response = await _client.GetAsync(url);
+        if (response.IsSuccessStatusCode)
+        {
+            using (var responseStream = await response.Content.ReadAsStreamAsync())
+            {
+                var data = await JsonSerializer.DeserializeAsync<List<Book>>(responseStream, _option);
+                _softDeletedBooks.Clear();
+
+                foreach (var book in data.Where(d => d.isDeleted == true))
+                {
+                    _softDeletedBooks.Add(book);
+                }
+            }
+        }
+    }
+
+    public async void LoadBooks()
     {
         var url = $"{baseUrl}/Book";
         var response = await _client.GetAsync(url);
@@ -43,7 +65,7 @@ public class CRUDViewModel
                 var data = await JsonSerializer.DeserializeAsync<List<Book>>(responseStream, _option);
                 _books.Clear();
 
-                foreach (var book in data)
+                foreach (var book in data.Where(d => d.isDeleted == false))
                 {
                     _books.Add(book);
                 }

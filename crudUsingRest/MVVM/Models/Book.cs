@@ -13,6 +13,7 @@ namespace crudUsingRest.MVVM.Models
         public DateTime datePublished { get; set; }
         public bool isDeleted { get; set; }
         public string id { get; set; }
+        public string imagesBook { get; set; }
 
     }
 }
