@@ -7,7 +7,7 @@
     Title="UpdateView"
     x:DataType="vm:CRUDViewModel">
 
-    <VerticalStackLayout Padding="20" Spacing="15">
+    <!--<VerticalStackLayout Padding="20" Spacing="15">
 
         <Label
             FontAttributes="Bold"
@@ -24,7 +24,7 @@
                 BackgroundColor="Black"
                 Command="{Binding UpdateBookCommand}"
                 Clicked="Update_Clicked"
-                Text="Update" 
+                Text="Update"
                 TextColor="White" />
 
             <Button
@@ -38,6 +38,62 @@
 
         </HorizontalStackLayout>
 
-    </VerticalStackLayout>
+    </VerticalStackLayout>-->
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#667EEA" />
+                <GradientStop Offset="1" Color="#764BA2" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Border
+            Margin="20"
+            Padding="20"
+            BackgroundColor="#30FFFFFF"
+            Stroke="#FFFFFF"
+            StrokeShape="RoundRectangle 25"
+            StrokeThickness="1.5">
+
+            <VerticalStackLayout Spacing="15">
+
+                <Label
+                    Style="{StaticResource FormTitleStyle}"
+                    Text="Update Book"
+                    TextColor="White" />
+
+                <Entry
+                    x:Name="txtTitle"
+                    Style="{StaticResource FormEntryStyle}"
+                    Text="{Binding Title}" />
+                <Entry
+                    x:Name="txtAuthor"
+                    Style="{StaticResource FormEntryStyle}"
+                    Text="{Binding Author}" />
+
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+
+                    <Button
+                        BackgroundColor="Black"
+                        Clicked="Update_Clicked"
+                        Command="{Binding UpdateBookCommand}"
+                        Text="Update"
+                        TextColor="White" />
+
+                    <Button
+                        BackgroundColor="Transparent"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        Clicked="Cancel_Clicked"
+                        Text="Cancel"
+                        TextColor="Black"
+                        WidthRequest="120" />
+
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 
 </ContentPage>

@@ -82,6 +82,20 @@ public partial class CRUDViewModel : ObservableObject
 
     public ICommand CreateBookCommand => new Command(async () =>
     {
+        var exists = _books.Any(b =>
+        b.title.Trim().ToLower() == Title.Trim().ToLower());
+
+        if (exists)
+        {
+            await Application.Current.MainPage.DisplayAlert(
+                "Error",
+                "Book title already exists!",
+                "OK");
+
+            return; 
+        }
+
+
         var url = $"{baseUrl}/Book";
 
         var book = new Book
@@ -101,6 +115,9 @@ public partial class CRUDViewModel : ObservableObject
         if (response.IsSuccessStatusCode)
         {
             LoadBooks();
+
+            Title = string.Empty;
+            Author = string.Empty;
         }
     });
 
