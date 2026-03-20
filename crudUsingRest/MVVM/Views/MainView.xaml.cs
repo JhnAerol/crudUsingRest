@@ -66,7 +66,9 @@ public partial class MainView : ContentPage
 
     private void HardDelete_Tapped(object sender, EventArgs e)
     {
-        optionOverlay.IsEnabled = false;
+        _viewModel.DeleteBookCommand.Execute(_viewModel.SelectedBook);
+
+        optionOverlay.IsVisible = false;
     }
 
     private void CancelButton_Clicked(object sender, EventArgs e)

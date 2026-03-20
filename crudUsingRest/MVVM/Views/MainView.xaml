@@ -9,151 +9,142 @@
     x:DataType="vm:CRUDViewModel"
     Shell.NavBarIsVisible="False">
 
-    <Grid>
+    <Grid
+        Margin="10,15"
+        RowDefinitions="Auto,*"
+        RowSpacing="5">
+        <HorizontalStackLayout HorizontalOptions="Start" Spacing="5">
+            <Button
+                Clicked="Create_Clicked"
+                Style="{StaticResource CreateButtonStyle}"
+                Text="Create New" />
+            <Button
+                Clicked="GotoArchive_Clicked"
+                Style="{StaticResource CreateButtonStyle}"
+                Text="Go to Archive" />
+        </HorizontalStackLayout>
 
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Offset="0" Color="#667EEA" />
-                <GradientStop Offset="1" Color="#764BA2" />
-            </LinearGradientBrush>
-        </Grid.Background>
+        <CollectionView
+            Grid.Row="1"
+            ItemsSource="{Binding _books}"
+            SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Book">
+                    <Border Style="{StaticResource BookCardBorder}">
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+
+                            <Image
+                                Grid.Row="0"
+                                Grid.ColumnSpan="2"
+                                Aspect="AspectFill"
+                                HeightRequest="140"
+                                Source="{Binding imagesBook}" />
+
+                            <VerticalStackLayout
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Padding="10"
+                                Spacing="4">
+
+                                <Label Style="{StaticResource BookTitleLabel}" Text="{Binding title}" />
+
+                                <Label Style="{StaticResource BookAuthorLabel}" Text="{Binding author}" />
+
+                                <Label
+                                    Margin="0,24,0,0"
+                                    FontSize="13"
+                                    Text="{Binding datePublished, StringFormat='{0:MMMM yyyy}'}"
+                                    TextColor="#6B7280" />
+
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Padding="10"
+                                HorizontalOptions="End"
+                                Spacing="4">
+
+                                <Button
+                                    Clicked="Update_Clicked"
+                                    CommandParameter="{Binding .}"
+                                    Style="{StaticResource ActionButtonStyle}"
+                                    Text="Update"
+                                    TextColor="Blue" />
+
+                                <BoxView HeightRequest="2" WidthRequest="70" />
+
+                                <Button
+                                    Clicked="OpenOption_Clicked"
+                                    Style="{StaticResource ActionButtonStyle}"
+                                    Text="Delete"
+                                    TextColor="Red" />
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
 
         <Grid
-            Margin="10,15"
-            RowDefinitions="Auto,*"
-            RowSpacing="5">
-            <HorizontalStackLayout HorizontalOptions="Start" Spacing="5">
-                <Button
-                    Clicked="Create_Clicked"
-                    Style="{StaticResource CreateButtonStyle}"
-                    Text="Create New" />
-                <Button
-                    Clicked="GotoArchive_Clicked"
-                    Style="{StaticResource CreateButtonStyle}"
-                    Text="Go to Archive" />
-            </HorizontalStackLayout>
+            x:Name="optionOverlay"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            BackgroundColor="#80000000"
+            IsVisible="False">
 
-            <CollectionView
-                Grid.Row="1"
-                ItemsSource="{Binding _books}"
-                SelectionMode="None">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Book">
-                        <Border Style="{StaticResource BookCardBorder}">
-                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+            <Border x:Name="optionContent" Style="{StaticResource BorderOverlay}">
+                <Border.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.4"
+                        Radius="15"
+                        Offset="0,8" />
+                </Border.Shadow>
 
-                                <Image
-                                    Grid.Row="0"
-                                    Grid.ColumnSpan="2"
-                                    Aspect="AspectFill"
-                                    HeightRequest="140"
-                                    Source="{Binding imagesBook}" />
+                <VerticalStackLayout>
 
-                                <VerticalStackLayout
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    Padding="10"
-                                    Spacing="4">
+                    <Button
+                        Background="Transparent"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        Clicked="SoftDelete_Tapped"
+                        Command="{Binding SoftDeleteCommand}"
+                        FontSize="18"
+                        Text="Soft Delete"
+                        TextColor="Black" />
 
-                                    <Label Style="{StaticResource BookTitleLabel}" Text="{Binding title}" />
+                    <BoxView
+                        Margin="50,5"
+                        BackgroundColor="#E0E0E0"
+                        HeightRequest="2" />
 
-                                    <Label Style="{StaticResource BookAuthorLabel}" Text="{Binding author}" />
+                    <Button
+                        Background="Transparent"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        Clicked="HardDelete_Tapped"
+                        Command="{Binding DeleteBookCommand}"
+                        CommandParameter="{Binding .}"
+                        FontSize="18"
+                        Text="Hard Delete"
+                        TextColor="Black" />
 
-                                    <Label
-                                        Margin="0,24,0,0"
-                                        FontSize="13"
-                                        Text="{Binding datePublished, StringFormat='{0:MMMM yyyy}'}"
-                                        TextColor="#6B7280" />
+                    <Button
+                        Margin="0,10,0,0"
+                        Clicked="CancelButton_Clicked"
+                        Style="{StaticResource ButtonCancel}"
+                        Text="Cancel" />
+                </VerticalStackLayout>
 
-                                </VerticalStackLayout>
-
-                                <VerticalStackLayout
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Padding="10"
-                                    HorizontalOptions="End"
-                                    Spacing="4">
-
-                                    <Button
-                                        Clicked="Update_Clicked"
-                                        CommandParameter="{Binding .}"
-                                        Style="{StaticResource ActionButtonStyle}"
-                                        Text="Update"
-                                        TextColor="Blue" />
-
-                                    <BoxView HeightRequest="2" WidthRequest="70" />
-
-                                    <Button
-                                        Clicked="OpenOption_Clicked"
-                                        Style="{StaticResource ActionButtonStyle}"
-                                        Text="Delete"
-                                        TextColor="Red" />
-
-                                </VerticalStackLayout>
-
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-            </CollectionView>
-
-
-            <Grid
-                x:Name="optionOverlay"
-                Grid.Row="1"
-                Grid.RowSpan="2"
-                BackgroundColor="#80000000"
-                IsVisible="False">
-
-                <Border x:Name="optionContent" Style="{StaticResource BorderOverlay}">
-                    <Border.Shadow>
-                        <Shadow
-                            Brush="Black"
-                            Opacity="0.4"
-                            Radius="15"
-                            Offset="0,8" />
-                    </Border.Shadow>
-
-                    <VerticalStackLayout>
-
-                        <Button
-                            Background="Transparent"
-                            BorderColor="Black"
-                            BorderWidth="2"
-                            Clicked="SoftDelete_Tapped"
-                            Command="{Binding SoftDeleteCommand}"
-                            FontSize="18"
-                            Text="Soft Delete"
-                            TextColor="Black" />
-
-                        <BoxView
-                            Margin="50,5"
-                            BackgroundColor="#E0E0E0"
-                            HeightRequest="2" />
-
-                        <Button
-                            Background="Transparent"
-                            BorderColor="Black"
-                            BorderWidth="2"
-                            Clicked="HardDelete_Tapped"
-                            Command="{Binding DeleteBookCommand}"
-                            CommandParameter="{Binding .}"
-                            FontSize="18"
-                            Text="Hard Delete"
-                            TextColor="Black" />
-
-                        <Button
-                            Margin="0,10,0,0"
-                            Clicked="CancelButton_Clicked"
-                            Style="{StaticResource ButtonCancel}"
-                            Text="Cancel" />
-                    </VerticalStackLayout>
-
-                </Border>
-
-            </Grid>
+            </Border>
 
         </Grid>
+
     </Grid>
+
 </ContentPage>
