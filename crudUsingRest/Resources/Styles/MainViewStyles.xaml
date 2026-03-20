@@ -4,17 +4,17 @@
              x:Class="crudUsingRest.Resources.Styles.MainViewStyles">
 
     <Style x:Key="BookCardBorder" TargetType="Border">
-        <Setter Property="Stroke" Value="Black"/>
+        <Setter Property="Stroke" Value="#EDEADE"/>
         <Setter Property="StrokeThickness" Value="2"/>
         <Setter Property="StrokeShape">
             <RoundRectangle CornerRadius="10"/>
         </Setter>
-        <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="BackgroundColor" Value="#FFFFF0"/>
         <Setter Property="Padding" Value="12"/>
         <Setter Property="Margin" Value="0,5"/>
     </Style>
     <Style x:Key="BorderOverlay" TargetType="Border">
-        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="BackgroundColor" Value="#FFFFF0" />
         <Setter Property="Padding" Value="25" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
@@ -40,23 +40,28 @@
         <Setter Property="Text" Value="cANCEL" />
     </Style>
     <Style x:Key="BookTitleLabel" TargetType="Label">
-        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontSize" Value="20"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="TextColor" Value="#1F2937"/>
     </Style>
     <Style x:Key="BookAuthorLabel" TargetType="Label">
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="TextColor" Value="#6B7280"/>
     </Style>
-    <Style x:Key="ActionButtonStyle" TargetType="Button">
+    <Style x:Key="UpdateActionButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="Transparent"/>
         <Setter Property="FontSize" Value="13"/>
     </Style>
+    <Style x:Key="DeleteActionButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#C04000"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="TextColor" Value="White"/>
+    </Style>
     <Style x:Key="CreateButtonStyle" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="BackgroundColor" Value="#F3E5AB"/>
         <Setter Property="TextColor" Value="Black"/>
         <Setter Property="BorderWidth" Value="2"/>
-        <Setter Property="BorderColor" Value="Black"/>
+        <Setter Property="BorderColor" Value="Transparent"/>
         <Setter Property="Padding" Value="10,6"/>
         <Setter Property="CornerRadius" Value="8"/>
         <Setter Property="FontAttributes" Value="Bold"/>

@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:crudUsingRest.MVVM.ViewModels"
     Title="UpdateView"
-    x:DataType="vm:CRUDViewModel">
+    x:DataType="vm:CRUDViewModel"
+    BackgroundColor="#F9F6EE">
 
     <VerticalStackLayout Padding="20" Spacing="15">
 
@@ -13,19 +14,26 @@
             FontAttributes="Bold"
             FontSize="24"
             HorizontalOptions="Center"
-            Text="Update Book" />
+            Text="Update Book"
+            TextColor="Black" />
 
-        <Entry x:Name="txtTitle" Text="{Binding Title}" />
-        <Entry x:Name="txtAuthor" Text="{Binding Author}" />
+        <Entry
+            x:Name="txtTitle"
+            Text="{Binding Title}"
+            TextColor="Black" />
+        <Entry
+            x:Name="txtAuthor"
+            Text="{Binding Author}"
+            TextColor="Black" />
 
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
 
             <Button
-                BackgroundColor="Black"
-                Command="{Binding UpdateBookCommand}"
+                BackgroundColor="#F3E5AB"
                 Clicked="Update_Clicked"
+                Command="{Binding UpdateBookCommand}"
                 Text="Update"
-                TextColor="White" />
+                TextColor="Black" />
 
             <Button
                 BackgroundColor="Transparent"
