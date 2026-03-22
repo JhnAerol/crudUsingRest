@@ -59,7 +59,7 @@
 
                             <Image
                                 Grid.Row="0"
-                                Aspect="Fill"
+                                Aspect="AspectFill"
                                 HeightRequest="150"
                                 Source="{Binding imagesBook}" />
 
@@ -95,7 +95,6 @@
                                 Spacing="8">
 
                                 <Button
-                                    BackgroundColor="#F3E5AB"
                                     Clicked="Update_Clicked"
                                     CommandParameter="{Binding .}"
                                     Style="{StaticResource UpdateActionButtonStyle}"

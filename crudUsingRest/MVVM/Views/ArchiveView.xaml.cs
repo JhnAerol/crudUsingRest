@@ -32,4 +32,33 @@ public partial class ArchiveView : ContentPage
     {
         await Navigation.PopAsync();
     }
+
+    private async void OpenOption_Clicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var selectedBook = button?.BindingContext as Book;
+
+        if (selectedBook != null)
+        {
+            _viewModel.SelectedBook = selectedBook;
+            optionOverlay.IsVisible = true;
+        }
+    }
+
+    private void SoftDelete_Tapped(object sender, EventArgs e)
+    {
+        optionOverlay.IsVisible = false;
+    }
+
+    private void CancelButton_Clicked(object sender, EventArgs e)
+    {
+        optionOverlay.IsVisible = false;
+    }
+
+    private void HardDelete_Tapped(object sender, EventArgs e)
+    {
+        _viewModel.DeleteBookCommand.Execute(_viewModel.SelectedBook);
+
+        optionOverlay.IsVisible = false;
+    }
 }

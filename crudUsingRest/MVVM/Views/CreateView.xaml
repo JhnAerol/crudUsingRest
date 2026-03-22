@@ -15,19 +15,27 @@
             FontSize="24"
             HorizontalOptions="Center"
             Text="Create New Book"
-            TextColor="Black"/>
+            TextColor="Black" />
 
-        <Entry x:Name="txtTitle" Placeholder="Enter Title" Text="{Binding Title}" FontSize="18"/>
+        <Entry
+            x:Name="txtTitle"
+            FontSize="18"
+            Placeholder="Enter Title"
+            Text="{Binding Title}" />
 
-        <Entry x:Name="txtAuthor" Placeholder="Enter Author" Text="{Binding Author}" FontSize="18"/>
+        <Entry
+            x:Name="txtAuthor"
+            FontSize="18"
+            Placeholder="Enter Author"
+            Text="{Binding Author}" />
 
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
 
 
             <Button
                 BackgroundColor="#F3E5AB"
-                Command="{Binding CreateBookCommand}"
                 Clicked="Cancel_Clicked"
+                Command="{Binding CreateBookCommand}"
                 Text="Save"
                 TextColor="Black"
                 WidthRequest="120" />

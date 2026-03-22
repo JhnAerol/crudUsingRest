@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="crudUsingRest.MVVM.Views.ArchiveView"
-             xmlns:models="clr-namespace:crudUsingRest.MVVM.Models"
-             xmlns:vm="clr-namespace:crudUsingRest.MVVM.ViewModels"
-             x:DataType="vm:CRUDViewModel"
-             Title="ArchiveView"
-             BackgroundColor="#F9F6EE">
+<ContentPage
+    x:Class="crudUsingRest.MVVM.Views.ArchiveView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:crudUsingRest.MVVM.Models"
+    xmlns:vm="clr-namespace:crudUsingRest.MVVM.ViewModels"
+    Title="ArchiveView"
+    x:DataType="vm:CRUDViewModel"
+    BackgroundColor="#F9F6EE">
 
     <Grid
         Margin="10,15"
         RowDefinitions="Auto,*"
         RowSpacing="10">
 
-        <!-- Header -->
+        <!--  Header  -->
         <Grid
             Grid.Row="0"
             RowDefinitions="Auto,Auto"
@@ -22,19 +23,19 @@
             <Button
                 Grid.Row="0"
                 Clicked="Back_Clicked"
+                HorizontalOptions="Start"
                 Style="{StaticResource CreateButtonStyle}"
-                Text="Back To Main View"
-                HorizontalOptions="Start" />
+                Text="Back To Main View" />
 
             <Label
                 Grid.Row="1"
-                Text="Archived"
-                TextColor="Black"
+                FontAttributes="Bold"
                 FontSize="20"
-                FontAttributes="Bold" />
+                Text="Archived"
+                TextColor="Black" />
         </Grid>
 
-        <!-- Archive Collection -->
+        <!--  Archive Collection  -->
         <CollectionView
             Grid.Row="1"
             ItemsSource="{Binding _softDeletedBooks}"
@@ -42,9 +43,9 @@
 
             <CollectionView.ItemsLayout>
                 <GridItemsLayout
+                    HorizontalItemSpacing="10"
                     Orientation="Vertical"
                     Span="2"
-                    HorizontalItemSpacing="10"
                     VerticalItemSpacing="10" />
             </CollectionView.ItemsLayout>
 
@@ -53,64 +54,52 @@
                     <Border Style="{StaticResource BookCardBorder}">
                         <Grid RowDefinitions="Auto,*,Auto">
 
-                    
+
                             <Image
                                 Grid.Row="0"
-                                HeightRequest="140"
                                 Aspect="AspectFill"
+                                HeightRequest="140"
                                 Source="{Binding imagesBook}" />
 
-                        
+
                             <VerticalStackLayout
                                 Grid.Row="1"
                                 Padding="10,10,10,0"
                                 Spacing="4">
 
                                 <Label
-                                    Style="{StaticResource BookTitleLabel}"
-                                    Text="{Binding title}"
                                     LineBreakMode="TailTruncation"
-                                    MaxLines="2" />
+                                    MaxLines="2"
+                                    Style="{StaticResource BookTitleLabel}"
+                                    Text="{Binding title}" />
 
                                 <Label
-                                    Style="{StaticResource BookAuthorLabel}"
-                                    Text="{Binding author}"
                                     LineBreakMode="TailTruncation"
-                                    MaxLines="1" />
+                                    MaxLines="1"
+                                    Style="{StaticResource BookAuthorLabel}"
+                                    Text="{Binding author}" />
 
                                 <Label
                                     Margin="0,8,0,0"
                                     FontSize="13"
-                                    TextColor="#CC5500"
-                                    Text="{Binding datePublished, StringFormat='{0:MMMM yyyy}'}" />
+                                    Text="{Binding datePublished, StringFormat='{0:MMMM yyyy}'}"
+                                    TextColor="#CC5500" />
 
                             </VerticalStackLayout>
 
-                            <Grid
+
+                            <HorizontalStackLayout
                                 Grid.Row="2"
                                 Padding="10"
-                                ColumnDefinitions="*,*"
-                                ColumnSpacing="8"
-                                >
+                                Spacing="8">
 
                                 <Button
-                                    Grid.Column="0"
-                                    Clicked="Update_Clicked"
-                                    Style="{StaticResource UpdateActionButtonStyle}"
-                                    Text="Update"
-                                    CommandParameter="{Binding .}"
-                                    />
-
-                                <Button
-                                    Grid.Column="1"
-                                    Command="{Binding DeleteBookCommand}"
-                                    CommandParameter="{Binding .}"
+                                    BorderColor="Black"
+                                    Clicked="OpenOption_Clicked"
                                     Style="{StaticResource DeleteActionButtonStyle}"
-                                    Text="Delete"
-                                  
-                                    />
+                                    Text="Delete" />
 
-                            </Grid>
+                            </HorizontalStackLayout>
 
                         </Grid>
                     </Border>
@@ -118,5 +107,60 @@
             </CollectionView.ItemTemplate>
 
         </CollectionView>
+
+        <Grid
+            x:Name="optionOverlay"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            BackgroundColor="#80000000"
+            IsVisible="False">
+
+            <Border x:Name="optionContent" Style="{StaticResource BorderOverlay}">
+                <Border.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.4"
+                        Radius="15"
+                        Offset="0,8" />
+                </Border.Shadow>
+
+                <VerticalStackLayout>
+
+                    <Button
+                        Background="Transparent"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        Clicked="SoftDelete_Tapped"
+                        Command="{Binding RemoveFromSoftDeleteCommand}"
+                        FontSize="18"
+                        Text="Unarchive"
+                        TextColor="Black" />
+
+                    <BoxView
+                        Margin="50,5"
+                        BackgroundColor="#E0E0E0"
+                        HeightRequest="2" />
+
+                    <Button
+                        Background="Transparent"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        Clicked="HardDelete_Tapped"
+                        Command="{Binding DeleteBookCommand}"
+                        CommandParameter="{Binding .}"
+                        FontSize="18"
+                        Text="Hard Delete"
+                        TextColor="Black" />
+
+                    <Button
+                        Margin="0,10,0,0"
+                        Clicked="CancelButton_Clicked"
+                        Style="{StaticResource ButtonCancel}"
+                        Text="Cancel" />
+                </VerticalStackLayout>
+
+            </Border>
+
+        </Grid>
     </Grid>
 </ContentPage>

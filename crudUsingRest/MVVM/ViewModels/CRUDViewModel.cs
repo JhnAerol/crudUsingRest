@@ -156,7 +156,11 @@ public partial class CRUDViewModel : ObservableObject
         if (response.IsSuccessStatusCode)
         {
             _books.Remove(book);
+            _softDeletedBooks.Remove(book);
         }
+
+        LoadBooks();
+        LoadSoftDeletedBooks();
     });
 
     public ICommand SoftDeleteCommand => new Command(async () =>
@@ -167,6 +171,29 @@ public partial class CRUDViewModel : ObservableObject
         var url = $"{baseUrl}/Book/{SelectedBook.id}";
 
         SelectedBook.isDeleted = true;
+
+        string json = JsonSerializer.Serialize(SelectedBook, _option);
+
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        var response = await _client.PutAsync(url, content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            LoadBooks();
+            LoadSoftDeletedBooks();
+        }
+
+    });
+
+    public ICommand RemoveFromSoftDeleteCommand => new Command(async () =>
+    {
+        if (SelectedBook == null)
+            return;
+
+        var url = $"{baseUrl}/Book/{SelectedBook.id}";
+
+        SelectedBook.isDeleted = false;
 
         string json = JsonSerializer.Serialize(SelectedBook, _option);
 
