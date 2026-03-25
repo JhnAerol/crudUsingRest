@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary
     x:Class="crudUsingRest.Resources.Styles.FormStyles"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -8,24 +8,33 @@
         <Setter Property="FontSize" Value="24" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="HorizontalOptions" Value="Center" />
-        <Setter Property="TextColor" Value="#111827" />
+        <Setter Property="TextColor" Value="{StaticResource FreshSlate}" />
+        <Setter Property="Margin" Value="0,10" />
     </Style>
     <Style x:Key="FormEntryStyle" TargetType="Entry">
-        <Setter Property="BackgroundColor" Value="#F3F4F6" />
-        <Setter Property="TextColor" Value="Black" />
-        <Setter Property="Margin" Value="0,5" />
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="TextColor" Value="{StaticResource FreshSlate}" />
+        <Setter Property="Margin" Value="0,8" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="FontSize" Value="16" />
     </Style>
     <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="#2563EB" />
+        <Setter Property="BackgroundColor" Value="{StaticResource FreshGreen}" />
         <Setter Property="TextColor" Value="White" />
-        <Setter Property="CornerRadius" Value="8" />
-        <Setter Property="WidthRequest" Value="120" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="WidthRequest" Value="160" />
     </Style>
     <Style x:Key="SecondaryButtonStyle" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="#E5E7EB" />
-        <Setter Property="TextColor" Value="#111827" />
-        <Setter Property="CornerRadius" Value="8" />
-        <Setter Property="WidthRequest" Value="120" />
+        <Setter Property="BackgroundColor" Value="{StaticResource FreshBlue}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="WidthRequest" Value="140" />
     </Style>
 
 </ResourceDictionary>

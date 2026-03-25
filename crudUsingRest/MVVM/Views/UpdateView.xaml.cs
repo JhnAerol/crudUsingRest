@@ -18,6 +18,7 @@ public partial class UpdateView : ContentPage
         {
             _viewModel.Title = _viewModel.SelectedBook.title;
             _viewModel.Author = _viewModel.SelectedBook.author;
+            _viewModel.ImagesBook = _viewModel.SelectedBook.imagesBook;
         }
     }
 

@@ -7,7 +7,7 @@
     xmlns:vm="clr-namespace:crudUsingRest.MVVM.ViewModels"
     Title="MainView"
     x:DataType="vm:CRUDViewModel"
-    BackgroundColor="#F9F6EE"
+    BackgroundColor="{StaticResource FreshBg}"
     Shell.NavBarIsVisible="False">
 
     <Grid
@@ -22,20 +22,26 @@
             <Label
                 Grid.Row="0"
                 FontAttributes="Bold"
-                FontSize="24"
-                Text="My Library"
-                TextColor="Black" />
+                FontSize="28"
+                HorizontalOptions="Center"
+                Text="My Library 📚"
+                TextColor="{StaticResource FreshSlate}" />
 
-            <HorizontalStackLayout Grid.Row="1" Spacing="8">
+            <Grid
+                Grid.Row="1"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="10">
                 <Button
+                    Grid.Column="0"
                     Clicked="Create_Clicked"
                     Style="{StaticResource CreateButtonStyle}"
-                    Text="Create New" />
+                    Text="Add Book" />
                 <Button
+                    Grid.Column="1"
                     Clicked="GotoArchive_Clicked"
                     Style="{StaticResource CreateButtonStyle}"
-                    Text="Go to Archive" />
-            </HorizontalStackLayout>
+                    Text="Archive" />
+            </Grid>
 
         </Grid>
 
@@ -57,13 +63,19 @@
                     <Border Style="{StaticResource BookCardBorder}">
                         <Grid RowDefinitions="Auto,*,Auto">
 
-                            <Image
+                            <Border
                                 Grid.Row="0"
-                                Aspect="AspectFill"
+                                Margin="0,0,0,10"
                                 HeightRequest="150"
-                                Source="{Binding imagesBook}" />
+                                Stroke="{StaticResource FreshSky}"
+                                StrokeThickness="2"
+                                WidthRequest="150">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12" />
+                                </Border.StrokeShape>
+                                <Image Aspect="AspectFill" Source="{Binding imagesBook}" />
+                            </Border>
 
-                            <!--  Labels  -->
                             <VerticalStackLayout
                                 Grid.Row="1"
                                 Padding="10,10,10,0"
@@ -98,11 +110,9 @@
                                     Clicked="Update_Clicked"
                                     CommandParameter="{Binding .}"
                                     Style="{StaticResource UpdateActionButtonStyle}"
-                                    Text="Update"
-                                    TextColor="Black" />
+                                    Text="Update" />
 
                                 <Button
-                                    BorderColor="Black"
                                     Clicked="OpenOption_Clicked"
                                     Style="{StaticResource DeleteActionButtonStyle}"
                                     Text="Delete" />

@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using crudUsingRest.MVVM.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,8 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Maui.Graphics;
+using Microsoft.Maui.Graphics.Platform;
 
 namespace crudUsingRest.MVVM.ViewModels;
 
@@ -27,6 +29,8 @@ public partial class CRUDViewModel : ObservableObject
     private DateTime datePublished = DateTime.Now;
     [ObservableProperty]
     private string isDeleted;
+    [ObservableProperty]
+    private string imagesBook;
 
     [ObservableProperty]
     private Book selectedBook;
@@ -103,7 +107,8 @@ public partial class CRUDViewModel : ObservableObject
             title = Title,
             author = Author,
             datePublished = DatePublished,
-            isDeleted = false
+            isDeleted = false,
+            imagesBook = ImagesBook
         };
 
         string json = JsonSerializer.Serialize(book, _option);
@@ -118,6 +123,37 @@ public partial class CRUDViewModel : ObservableObject
 
             Title = string.Empty;
             Author = string.Empty;
+            ImagesBook = string.Empty;
+        }
+    });
+
+    public ICommand SelectImageCommand => new Command(async () =>
+    {
+        try
+        {
+            var result = await FilePicker.Default.PickAsync(new PickOptions
+            {
+                PickerTitle = "Please select an image",
+                FileTypes = FilePickerFileType.Images
+            });
+
+            if (result != null)
+            {
+                using var stream = await result.OpenReadAsync();
+                var image = PlatformImage.FromStream(stream);
+                if (image != null)
+                {
+                    var resizedImage = image.Downsize(400, true);
+                    using var memoryStream = new MemoryStream();
+                    resizedImage.Save(memoryStream, ImageFormat.Jpeg, 0.7f);
+                    var bytes = memoryStream.ToArray();
+                    ImagesBook = $"data:image/jpeg;base64,{Convert.ToBase64String(bytes)}";
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert("Error", $"Failed to pick image: {ex.Message}", "OK");
         }
     });
 
@@ -131,6 +167,7 @@ public partial class CRUDViewModel : ObservableObject
         SelectedBook.title = Title;
         SelectedBook.author = Author;
         SelectedBook.datePublished = DatePublished;
+        SelectedBook.imagesBook = ImagesBook;
 
         string json = JsonSerializer.Serialize(SelectedBook, _option);
 

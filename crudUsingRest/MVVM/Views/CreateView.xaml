@@ -6,48 +6,58 @@
     xmlns:vm="clr-namespace:crudUsingRest.MVVM.ViewModels"
     Title="CreateView"
     x:DataType="vm:CRUDViewModel"
-    BackgroundColor="#F9F6EE">
+    BackgroundColor="{StaticResource FreshBg}">
 
     <VerticalStackLayout Padding="20" Spacing="15">
 
         <Label
             FontAttributes="Bold"
-            FontSize="24"
+            FontSize="26"
             HorizontalOptions="Center"
-            Text="Create New Book"
-            TextColor="Black" />
+            Style="{StaticResource FormTitleStyle}"
+            Text="Add a New Story" />
 
         <Entry
             x:Name="txtTitle"
-            FontSize="18"
-            Placeholder="Enter Title"
+            Placeholder="Title"
+            Style="{StaticResource FormEntryStyle}"
             Text="{Binding Title}" />
 
         <Entry
             x:Name="txtAuthor"
-            FontSize="18"
-            Placeholder="Enter Author"
+            Placeholder="Author"
+            Style="{StaticResource FormEntryStyle}"
             Text="{Binding Author}" />
 
-        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+        <Button
+            Command="{Binding SelectImageCommand}"
+            Style="{StaticResource CreateButtonStyle}"
+            Text="Select Picture" />
 
+        <Border
+            HeightRequest="180"
+            HorizontalOptions="Center"
+            Stroke="{StaticResource FreshBlue}"
+            StrokeThickness="2"
+            WidthRequest="180">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="12" />
+            </Border.StrokeShape>
+            <Image Aspect="AspectFill" Source="{Binding ImagesBook}" />
+        </Border>
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="15">
 
             <Button
-                BackgroundColor="#F3E5AB"
                 Clicked="Cancel_Clicked"
                 Command="{Binding CreateBookCommand}"
-                Text="Save"
-                TextColor="Black"
-                WidthRequest="120" />
+                Style="{StaticResource PrimaryButtonStyle}"
+                Text="Save" />
 
             <Button
-                BackgroundColor="Transparent"
-                BorderColor="Black"
-                BorderWidth="2"
                 Clicked="Cancel_Clicked"
-                Text="Cancel"
-                TextColor="Black"
-                WidthRequest="120" />
+                Style="{StaticResource ButtonCancel}"
+                Text="Cancel" />
 
         </HorizontalStackLayout>
 

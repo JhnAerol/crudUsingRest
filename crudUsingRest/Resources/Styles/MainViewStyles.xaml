@@ -1,18 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary
     x:Class="crudUsingRest.Resources.Styles.MainViewStyles"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Style x:Key="BookCardBorder" TargetType="Border">
-        <Setter Property="Stroke" Value="#EDEADE" />
-        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="Stroke" Value="{StaticResource FreshGreen}" />
+        <Setter Property="StrokeThickness" Value="1.5" />
         <Setter Property="StrokeShape">
-            <RoundRectangle CornerRadius="10" />
+            <RoundRectangle CornerRadius="15" />
         </Setter>
-        <Setter Property="BackgroundColor" Value="#FFFFF0" />
-        <Setter Property="Padding" Value="12" />
-        <Setter Property="Margin" Value="0,5" />
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="Padding" Value="15" />
+        <Setter Property="Margin" Value="0,8" />
+        <Setter Property="Shadow">
+            <Shadow Brush="Black" Opacity="0.05" Offset="0,4" />
+        </Setter>
     </Style>
     <Style x:Key="BorderOverlay" TargetType="Border">
         <Setter Property="BackgroundColor" Value="#FFFFF0" />
@@ -30,45 +33,51 @@
         </Setter>
     </Style>
     <Style x:Key="ButtonCancel" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="BorderColor" Value="#CCCCCC" />
-        <Setter Property="BorderWidth" Value="2" />
-        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="BackgroundColor" Value="#EF4444" />
+        <Setter Property="CornerRadius" Value="10" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="HeightRequest" Value="50" />
-        <Setter Property="TextColor" Value="#666666" />
-        <Setter Property="Text" Value="cANCEL" />
+        <Setter Property="HeightRequest" Value="45" />
+        <Setter Property="TextColor" Value="White" />
     </Style>
     <Style x:Key="BookTitleLabel" TargetType="Label">
-        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontSize" Value="18" />
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="TextColor" Value="#1F2937" />
+        <Setter Property="TextColor" Value="{StaticResource FreshSlate}" />
+        <Setter Property="HorizontalOptions" Value="Center" />
     </Style>
     <Style x:Key="BookAuthorLabel" TargetType="Label">
         <Setter Property="FontSize" Value="15" />
         <Setter Property="TextColor" Value="#6B7280" />
     </Style>
     <Style x:Key="UpdateActionButtonStyle" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="#F3E5AB" />
-        <Setter Property="Padding" Value="7" />
-        <Setter Property="HeightRequest" Value="20" />
-        <Setter Property="FontSize" Value="13" />
+        <Setter Property="BackgroundColor" Value="{StaticResource FreshBlue}" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="WidthRequest" Value="75" />
     </Style>
     <Style x:Key="DeleteActionButtonStyle" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="#C04000" />
-        <Setter Property="Padding" Value="8,7" />
-        <Setter Property="FontSize" Value="13" />
+        <Setter Property="BackgroundColor" Value="#EF4444" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="TextColor" Value="White" />
+        <Setter Property="WidthRequest" Value="75" />
     </Style>
     <Style x:Key="CreateButtonStyle" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="#F3E5AB" />
-        <Setter Property="TextColor" Value="Black" />
-        <Setter Property="BorderWidth" Value="2" />
-        <Setter Property="BorderColor" Value="Transparent" />
-        <Setter Property="Padding" Value="10,6" />
-        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="BackgroundColor" Value="{StaticResource FreshTeal}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="CornerRadius" Value="10" />
         <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Shadow">
+            <Shadow Brush="Black" Opacity="0.1" Offset="0,2" />
+        </Setter>
     </Style>
 
 </ResourceDictionary>

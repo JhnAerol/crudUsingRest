@@ -7,7 +7,7 @@
     xmlns:vm="clr-namespace:crudUsingRest.MVVM.ViewModels"
     Title="ArchiveView"
     x:DataType="vm:CRUDViewModel"
-    BackgroundColor="#F9F6EE">
+    BackgroundColor="{StaticResource FreshBg}">
 
     <Grid
         Margin="10,15"
@@ -25,14 +25,14 @@
                 Clicked="Back_Clicked"
                 HorizontalOptions="Start"
                 Style="{StaticResource CreateButtonStyle}"
-                Text="Back To Main View" />
+                Text="Back home" />
 
             <Label
                 Grid.Row="1"
                 FontAttributes="Bold"
-                FontSize="20"
-                Text="Archived"
-                TextColor="Black" />
+                FontSize="22"
+                Text="My Secret Archive 📦"
+                TextColor="#333333" />
         </Grid>
 
         <!--  Archive Collection  -->
@@ -94,7 +94,6 @@
                                 Spacing="8">
 
                                 <Button
-                                    BorderColor="Black"
                                     Clicked="OpenOption_Clicked"
                                     Style="{StaticResource DeleteActionButtonStyle}"
                                     Text="Delete" />
