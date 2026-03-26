@@ -30,7 +30,9 @@ public partial class CRUDViewModel : ObservableObject
     [ObservableProperty]
     private string isDeleted;
     [ObservableProperty]
-    private string imagesBook;
+    private ImageSource imageBook;
+    [ObservableProperty]
+    private string imagesBase64;
 
     [ObservableProperty]
     private Book selectedBook;
@@ -59,6 +61,35 @@ public partial class CRUDViewModel : ObservableObject
 
                 foreach (var book in data.Where(d => d.isDeleted == true))
                 {
+                    if (!string.IsNullOrEmpty(book.imagesBase64))
+                    {
+                        if (!string.IsNullOrEmpty(book.imagesBase64))
+                        {
+                            if (book.imagesBase64.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                            {
+                                book.imageBook = ImageSource.FromUri(new Uri(book.imagesBase64));
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    var base64 = book.imagesBase64;
+
+                                    if (base64.Contains(","))
+                                        base64 = base64.Split(',')[1];
+
+                                    var bytes = Convert.FromBase64String(base64);
+                                    var copy = bytes;
+                                    book.imageBook = ImageSource.FromStream(() => new MemoryStream(copy));
+                                }
+                                catch
+                                {
+
+                                }
+                            }
+                        }
+                    }
+
                     _softDeletedBooks.Add(book);
                 }
             }
@@ -78,6 +109,34 @@ public partial class CRUDViewModel : ObservableObject
 
                 foreach (var book in data.Where(d => d.isDeleted == false))
                 {
+                    if (!string.IsNullOrEmpty(book.imagesBase64))
+                    {
+                        if (!string.IsNullOrEmpty(book.imagesBase64))
+                        {
+                            if (book.imagesBase64.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                            {
+                                book.imageBook = ImageSource.FromUri(new Uri(book.imagesBase64));
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    var base64 = book.imagesBase64;
+
+                                    if (base64.Contains(","))
+                                        base64 = base64.Split(',')[1];
+
+                                    var bytes = Convert.FromBase64String(base64);
+                                    var copy = bytes;
+                                    book.imageBook = ImageSource.FromStream(() => new MemoryStream(copy));
+                                }
+                                catch
+                                {
+
+                                }
+                            }
+                        }
+                    }
                     _books.Add(book);
                 }
             }
@@ -108,7 +167,7 @@ public partial class CRUDViewModel : ObservableObject
             author = Author,
             datePublished = DatePublished,
             isDeleted = false,
-            imagesBook = ImagesBook
+            imagesBase64 = ImagesBase64
         };
 
         string json = JsonSerializer.Serialize(book, _option);
@@ -123,7 +182,7 @@ public partial class CRUDViewModel : ObservableObject
 
             Title = string.Empty;
             Author = string.Empty;
-            ImagesBook = string.Empty;
+            ImageBook = string.Empty;
         }
     });
 
@@ -133,23 +192,31 @@ public partial class CRUDViewModel : ObservableObject
         {
             var result = await FilePicker.Default.PickAsync(new PickOptions
             {
-                PickerTitle = "Please select an image",
+                PickerTitle = "Select an image",
                 FileTypes = FilePickerFileType.Images
             });
 
-            if (result != null)
-            {
-                using var stream = await result.OpenReadAsync();
-                var image = PlatformImage.FromStream(stream);
-                if (image != null)
-                {
-                    var resizedImage = image.Downsize(400, true);
-                    using var memoryStream = new MemoryStream();
-                    resizedImage.Save(memoryStream, ImageFormat.Jpeg, 0.7f);
-                    var bytes = memoryStream.ToArray();
-                    ImagesBook = $"data:image/jpeg;base64,{Convert.ToBase64String(bytes)}";
-                }
-            }
+            if (result == null)
+                return;
+
+            using var stream = await result.OpenReadAsync();
+
+            var image = PlatformImage.FromStream(stream);
+
+            if (image == null)
+                return;
+
+            var resizedImage = image.Downsize(400, true);
+
+            using var memoryStream = new MemoryStream();
+
+            resizedImage.Save(memoryStream, ImageFormat.Jpeg, 0.7f);
+
+            var bytes = memoryStream.ToArray();
+
+            ImagesBase64 = Convert.ToBase64String(bytes);
+
+            ImageBook = ImageSource.FromStream(() => new MemoryStream(bytes));
         }
         catch (Exception ex)
         {
@@ -167,7 +234,7 @@ public partial class CRUDViewModel : ObservableObject
         SelectedBook.title = Title;
         SelectedBook.author = Author;
         SelectedBook.datePublished = DatePublished;
-        SelectedBook.imagesBook = ImagesBook;
+        SelectedBook.imageBook = ImageBook;
 
         string json = JsonSerializer.Serialize(SelectedBook, _option);
 

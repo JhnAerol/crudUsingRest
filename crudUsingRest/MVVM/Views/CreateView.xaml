@@ -43,7 +43,7 @@
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="12" />
             </Border.StrokeShape>
-            <Image Aspect="AspectFill" Source="{Binding ImagesBook}" />
+            <Image Aspect="AspectFill" Source="{Binding ImageBook}" />
         </Border>
 
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="15">

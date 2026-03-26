@@ -66,14 +66,20 @@
                             <Border
                                 Grid.Row="0"
                                 Margin="0,0,0,10"
-                                HeightRequest="150"
                                 Stroke="{StaticResource FreshSky}"
                                 StrokeThickness="2"
-                                WidthRequest="150">
+                                HorizontalOptions="Fill"
+                                MaximumHeightRequest="180">
+
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="12" />
                                 </Border.StrokeShape>
-                                <Image Aspect="AspectFill" Source="{Binding imagesBook}" />
+
+                                <Image
+                                    Source="{Binding imageBook}"
+                                    Aspect="AspectFill"
+                                    HeightRequest="160"
+                                    HorizontalOptions="Fill" />
                             </Border>
 
                             <VerticalStackLayout
@@ -82,44 +88,50 @@
                                 Spacing="4">
 
                                 <Label
-                                    LineBreakMode="TailTruncation"
-                                    MaxLines="2"
+                                    Text="{Binding title}"
                                     Style="{StaticResource BookTitleLabel}"
-                                    Text="{Binding title}" />
-
-                                <Label
                                     LineBreakMode="TailTruncation"
-                                    MaxLines="1"
-                                    Style="{StaticResource BookAuthorLabel}"
-                                    Text="{Binding author}" />
+                                    HorizontalTextAlignment="Center"
+                                    MaxLines="2" />
 
                                 <Label
+                                    Text="{Binding author}"
+                                    Style="{StaticResource BookAuthorLabel}"
+                                    LineBreakMode="TailTruncation"
+                                    HorizontalTextAlignment="Center"
+                                    MaxLines="1" />
+
+                                <Label
+                                    Text="{Binding datePublished, StringFormat='{0:MMMM yyyy}'}"
                                     Margin="0,8,0,0"
                                     FontSize="13"
-                                    Text="{Binding datePublished, StringFormat='{0:MMMM yyyy}'}"
+                                    HorizontalTextAlignment="Center"
                                     TextColor="#CC5500" />
-
                             </VerticalStackLayout>
 
                             <HorizontalStackLayout
                                 Grid.Row="2"
-                                Padding="10"
-                                Spacing="8">
+                                Padding="0,10,0,0"
+                                Spacing="5"
+                                HorizontalOptions="Center">
 
                                 <Button
-                                    Clicked="Update_Clicked"
-                                    CommandParameter="{Binding .}"
-                                    Style="{StaticResource UpdateActionButtonStyle}"
-                                    Text="Update" />
+                                   Text="Update"
+                                   Style="{StaticResource UpdateActionButtonStyle}"
+                                   Clicked="Update_Clicked"
+                                   CommandParameter="{Binding .}"
+                                   HorizontalOptions="Start" />
 
                                 <Button
-                                    Clicked="OpenOption_Clicked"
-                                    Style="{StaticResource DeleteActionButtonStyle}"
-                                    Text="Delete" />
+                                   Text="Delete"
+                                   Style="{StaticResource DeleteActionButtonStyle}"
+                                   Clicked="OpenOption_Clicked"
+                                   HorizontalOptions="End" />
 
                             </HorizontalStackLayout>
-
                         </Grid>
+
+ 
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
